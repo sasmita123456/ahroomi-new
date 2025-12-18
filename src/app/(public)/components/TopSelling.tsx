@@ -73,7 +73,7 @@ export default function TopSelling({ items }: TopSellingProps) {
                       {discount > 0 && (
                         <div className="absolute z-20">
                           <div className={styles.discountBadgeCustom}>
-                            -{discount.toFixed(2)}%
+                            {discount}% Off
                           </div>
                         </div>
                       )}

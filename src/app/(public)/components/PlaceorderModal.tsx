@@ -16,7 +16,6 @@ import cartImg from "../../../../public/assets/images/cartImg.jpg";
 import gokwik from "../../../../public/assets/images/gokwik.svg";
 import india from "../../../../public/assets/images/india.png";
 
-
 interface PlaceorderModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -284,7 +283,7 @@ export default function PlaceorderModal({
 
       <div className="relative w-full max-w-lg h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden z-10 flex flex-col">
         {/* HEADER */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-200">
           <div className="flex items-center gap-3">
             {currentStep !== "mobile" && (
               <button
@@ -379,7 +378,7 @@ export default function PlaceorderModal({
         {/* BODY */}
         <div className="flex-1 overflow-y-auto px-5 pt-4 pb-40 bg-[#f9f9f9]">
           {/* Order Summary */}
-          <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-4">
+          <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-2">
             <button
               onClick={() => setOpenSummary(!openSummary)}
               className="flex justify-between items-center w-full cursor-pointer"
@@ -459,7 +458,7 @@ export default function PlaceorderModal({
           {/* Coupon & Wallet - Show only in mobile/otp */}
           {currentStep !== "address" && (
             <>
-              <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-3">
+              <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-2">
                 <div className="flex justify-between items-center py-1 px-2 rounded bg-[#e6f7ff]">
                   <div className="flex items-center gap-2">
                     <Image src={discount} alt="Discount" width={15} />
@@ -553,7 +552,7 @@ export default function PlaceorderModal({
                 )}
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-4">
+              <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-2">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="font-medium text-gray-800">
@@ -572,10 +571,10 @@ export default function PlaceorderModal({
           {/* MOBILE STEP */}
           {currentStep === "mobile" && (
             <>
-              <p className="text-center text-gray-800 font-semibold mb-4 mt-1">
+              <p className="text-center text-gray-800 font-semibold mb-2 mt-1">
                 Enter Mobile Number
               </p>
-              <div className="flex items-center gap-3 bg-white border border-green-300 rounded-lg p-3 mb-3">
+              <div className="flex items-center gap-3 bg-white border border-green-300 rounded-lg p-2 mb-2">
                 <div className="flex items-center gap-2 pl-1">
                   <Image src={india} alt="IN" width={20} />
                   <span className="text-gray-700 font-medium">+91</span>
@@ -610,10 +609,10 @@ export default function PlaceorderModal({
               <p className="text-center text-gray-800 font-semibold mb-2">
                 Verify Mobile Number
               </p>
-              <p className="text-center text-sm text-gray-600 mb-4">
+              <p className="text-center text-sm text-gray-600 mb-3">
                 To use your saved address, enter the OTP sent to
               </p>
-              <p className="text-center text-[#22a6dd] font-medium mb-6">
+              <p className="text-center text-[#22a6dd] font-medium mb-3">
                 +91- {mobileNumber.slice(0, 5)} {mobileNumber.slice(5)} ✏️
               </p>
 
@@ -628,7 +627,7 @@ export default function PlaceorderModal({
                     value={digit}
                     onChange={(e) => handleOtpChange(index, e.target.value)}
                     onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                    className="w-14 h-14 text-center text-xl font-semibold border-2 border-green-300 rounded-lg focus:outline-none bg-white"
+                    className="w-12 h-12 text-center text-xl font-semibold border-2 border-green-300 rounded-lg focus:outline-none bg-white"
                   />
                 ))}
               </div>
@@ -652,19 +651,47 @@ export default function PlaceorderModal({
                 <span className="text-sm text-red-500">* Mandatory Fields</span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <input
                   type="text"
-                  placeholder="Pincode *"
-                  value={addressForm.pincode}
+                  placeholder="Full Name *"
+                  value={addressForm.fullName}
                   onChange={(e) =>
-                    setAddressForm({ ...addressForm, pincode: e.target.value })
+                    setAddressForm({
+                      ...addressForm,
+                      fullName: e.target.value,
+                    })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                  className="px-4 py-2.5 border w-full border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
                 />
 
                 <div className="grid grid-cols-2 gap-3">
-                          <input
+                  <input
+                    type="tel"
+                    placeholder="Phone No *"
+                    value={addressForm.phone}
+                    onChange={(e) =>
+                      setAddressForm({ ...addressForm, phone: e.target.value })
+                    }
+                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                  />
+
+                  <input
+                    type="text"
+                    placeholder="Pincode *"
+                    value={addressForm.pincode}
+                    onChange={(e) =>
+                      setAddressForm({
+                        ...addressForm,
+                        pincode: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <input
                     type="text"
                     placeholder="Country *"
                     value={addressForm.country}
@@ -674,9 +701,9 @@ export default function PlaceorderModal({
                         country: e.target.value,
                       })
                     }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
                   />
-          
+
                   <input
                     type="text"
                     placeholder="State *"
@@ -684,44 +711,21 @@ export default function PlaceorderModal({
                     onChange={(e) =>
                       setAddressForm({ ...addressForm, state: e.target.value })
                     }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                          <input
+                  <input
                     type="text"
                     placeholder="City *"
                     value={addressForm.city}
                     onChange={(e) =>
                       setAddressForm({ ...addressForm, city: e.target.value })
                     }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
                   />
-                  <input
-                    type="tel"
-                    placeholder="Phone No *"
-                    value={addressForm.phone}
-                    onChange={(e) =>
-                      setAddressForm({ ...addressForm, phone: e.target.value })
-                    }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
-                  />
-                </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    placeholder="Full Name *"
-                    value={addressForm.fullName}
-                    onChange={(e) =>
-                      setAddressForm({
-                        ...addressForm,
-                        fullName: e.target.value,
-                      })
-                    }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
-                  />
                   <input
                     type="email"
                     placeholder="Email Address *"
@@ -729,7 +733,7 @@ export default function PlaceorderModal({
                     onChange={(e) =>
                       setAddressForm({ ...addressForm, email: e.target.value })
                     }
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
+                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white"
                   />
                 </div>
 
@@ -743,7 +747,7 @@ export default function PlaceorderModal({
                     })
                   }
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white resize-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22a6dd] bg-white resize-none"
                 />
 
                 <div>
@@ -764,7 +768,7 @@ export default function PlaceorderModal({
                           setAddressForm({ ...addressForm, addressType: type })
                         }
                         type="button"
-                        className={`px-2 py-3 border-2 rounded-lg font-medium transition text-left ${
+                        className={`px-2 py-2.5 border-2 rounded-lg font-medium transition text-left ${
                           addressForm.addressType === type
                             ? "border-[#22a6dd] bg-[#e6f7ff] text-[#22a6dd]"
                             : "border-gray-300 bg-white text-gray-700"
@@ -808,7 +812,7 @@ export default function PlaceorderModal({
                   <h4 className="text-gray-800 font-medium mb-3">
                     Shipping method
                   </h4>
-                  <div className="flex items-center gap-3 px-4 py-3 border-2 border-[#22a6dd] bg-[#e6f7ff] rounded-lg">
+                  <div className="flex items-center gap-3 px-4 py-2.5 border-2 border-[#22a6dd] bg-[#e6f7ff] rounded-lg">
                     <div className="w-5 h-5 rounded-full border-2 border-[#22a6dd] bg-[#22a6dd] flex items-center justify-center">
                       <div className="w-2.5 h-2.5 bg-white rounded-full" />
                     </div>
@@ -825,7 +829,7 @@ export default function PlaceorderModal({
           {currentStep === "payment" && (
             <>
               {/* Show saved address box with edit */}
-              <div className="bg-white rounded-xl shadow-sm px-4 py-3 mb-3">
+              <div className="bg-white rounded-xl shadow-sm px-4 py-2.5 mb-3">
                 <div className="flex justify-between items-start gap-3">
                   <div>
                     <p className="text-gray-800 font-medium">
@@ -865,7 +869,7 @@ export default function PlaceorderModal({
               </h3>
 
               {/* Payment option component */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {/* Razorpay */}
                 <button
                   type="button"

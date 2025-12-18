@@ -7,6 +7,11 @@ import { encryptPayloadAll } from "@/utils/encryption";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
+import loginBg from "../../../../../public/assets/images/loginBg.jpg"
+import ahroomiLogo from "../../../../../public/assets/images/ahroomoLogo.png";
+import Image from "next/image";
+
+
 const LoginTabs = () => {
   const router = useRouter();
   const [userType, setUserType] = useState("cms");
@@ -202,9 +207,9 @@ const LoginTabs = () => {
   // Show success screen after OTP verification or CMS login
   if (otpSuccess || cmsLoginSuccess) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
+      <div className="min-h-screen flex items-center justify-center bg-cover bg-right bg-no-repeat"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?fit=crop&w=1950&q=80')",
+           backgroundImage: `url(${loginBg.src})`,
         }}
       >
         <div className="w-full max-w-sm bg-white p-8 md:p-10 rounded-xl shadow-2xl space-y-8 border border-gray-100 relative overflow-hidden">
@@ -223,7 +228,7 @@ const LoginTabs = () => {
                 : "Redirecting to your admin dashboard..."}
             </p>
             <div className="mt-6">
-              <div className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary">
+              <div className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#22a6dd]">
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -238,13 +243,13 @@ const LoginTabs = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-right bg-no-repeat"
       style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?fit=crop&w=1950&q=80')",
+         backgroundImage: `url(${loginBg.src})`,
       }}
     >
       
-      <div className="w-full max-w-sm bg-white p-8 md:p-10 rounded-xl shadow-2xl space-y-8 border border-gray-100 relative overflow-hidden">
+      <div className="w-full max-w-sm bg-white p-8 md:p-8 rounded-xl shadow-2xl space-y-8 border border-gray-100 relative overflow-hidden">
         {/* Subtle Background Overlay/Shape */}
         <div 
           className="absolute inset-0 z-0 opacity-10"
@@ -256,7 +261,12 @@ const LoginTabs = () => {
         ></div>
 
         <div className="text-center relative z-10">
-          <h2 className="text-3xl font-extrabold text-gray-900">
+               <div className="shrink-0 flex items-center justify-center mb-3">
+             
+                <Image src={ahroomiLogo} alt="ahroomi logo" priority />
+             
+            </div>
+          <h2 className="text-2xl font-extrabold text-gray-700">
             Sign in to your account
           </h2>
         </div>
@@ -270,7 +280,7 @@ const LoginTabs = () => {
               <select
                 id="user-type"
                 name="user-type"
-                className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition duration-150`}
+                className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#22a6dd] focus:border-[#22a6dd] sm:text-sm transition duration-150`}
                 value={userType}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setUserType(e.target.value);
@@ -309,7 +319,7 @@ const LoginTabs = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition duration-150`}
+                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#22a6dd] focus:border-[#22a6dd] sm:text-sm transition duration-150`}
                     placeholder="Email Address"
                     value={username}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -331,7 +341,7 @@ const LoginTabs = () => {
                     type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
-                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition duration-150`}
+                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#22a6dd] focus:border-[#22a6dd] sm:text-sm transition duration-150`}
                     placeholder="Password"
                     value={password}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -348,9 +358,9 @@ const LoginTabs = () => {
                     disabled={loading}
                   >
                     {showPassword ? (
-                      <FiEyeOff className="w-5 h-5 text-gray-500 hover:text-primary transition-colors" />
+                      <FiEyeOff className="w-5 h-5 text-gray-500 hover:text-[#22a6dd] transition-colors" />
                     ) : (
-                      <FiEye className="w-5 h-5 text-gray-500 hover:text-primary transition-colors" />
+                      <FiEye className="w-5 h-5 text-gray-500 hover:text-[#22a6dd] transition-colors" />
                     )}
                   </button>
                 </div>
@@ -367,7 +377,7 @@ const LoginTabs = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition duration-150`}
+                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#22a6dd] focus:border-[#22a6dd] sm:text-sm transition duration-150`}
                     placeholder="Email Address"
                     value={email} // Remove the hardcoded default value
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -387,7 +397,7 @@ const LoginTabs = () => {
                     type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
-                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition duration-150`}
+                    className={`block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#22a6dd] focus:border-[#22a6dd] sm:text-sm transition duration-150`}
                     placeholder="Password"
                     value={password}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -404,9 +414,9 @@ const LoginTabs = () => {
                     disabled={loading}
                   >
                     {showPassword ? (
-                      <FiEyeOff className="w-5 h-5 text-gray-500 hover:text-primary transition-colors" />
+                      <FiEyeOff className="w-5 h-5 text-gray-500 hover:text-[#22a6dd] transition-colors" />
                     ) : (
-                      <FiEye className="w-5 h-5 text-gray-500 hover:text-primary transition-colors" />
+                      <FiEye className="w-5 h-5 text-gray-500 hover:text-[#22a6dd] transition-colors" />
                     )}
                   </button>
                 </div>
@@ -419,7 +429,7 @@ const LoginTabs = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full flex justify-center py-2.5 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-primary hover:bg-accent transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-md hover:shadow-lg ${
+              className={`w-full flex justify-center py-2.5 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-[#22a6dd] hover:bg-accent transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#22a6dd] shadow-md hover:shadow-lg ${
                 loading ? "opacity-75 cursor-not-allowed" : ""
               }`}
             >
@@ -467,7 +477,7 @@ const LoginTabs = () => {
                     onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
                       handleOtpKeyDown(index, e)
                     }
-                    className="w-10 text-gray-900 h-10 sm:w-12 sm:h-12 text-center text-xl font-semibold border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-50 outline-none transition duration-150"
+                    className="w-10 text-gray-900 h-10 sm:w-12 sm:h-12 text-center text-xl font-semibold border-2 border-gray-300 rounded-lg focus:border-[#22a6dd] focus:ring-2 focus:ring-offset-0 focus:ring-[#22a6dd] focus:ring-opacity-50 outline-none transition duration-150"
                     onFocus={(e) => e.target.select()}
                     disabled={loading}
                   />
@@ -482,7 +492,7 @@ const LoginTabs = () => {
                   className={`py-2.5 px-4 border border-transparent text-base font-medium rounded-lg text-white transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                     otp.some((d) => d === "") || loading
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-primary hover:bg-accent focus:ring-primary shadow-md"
+                      : "bg-[#22a6dd] hover:bg-accent focus:ring-[#22a6dd] shadow-md"
                   }`}
                 >
                   {loading ? "Verifying..." : "Verify OTP"}
@@ -504,7 +514,7 @@ const LoginTabs = () => {
                 <button
                   onClick={handleResendOtp}
                   disabled={loading}
-                  className="text-sm font-medium text-primary hover:text-accent transition duration-150 disabled:opacity-50"
+                  className="text-sm font-medium text-[#22a6dd] hover:text-accent transition duration-150 disabled:opacity-50"
                 >
                   Resend OTP
                 </button>

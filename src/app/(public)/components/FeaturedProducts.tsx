@@ -45,7 +45,7 @@ export default function FeaturedProducts({ items }: { items: Product[] }) {
                     {discount > 0 && (
                       <div className="absolute z-1">
                         <div className={styles.discountBadgeCustom}>
-                          -{discount.toFixed(2)}%
+                          {discount}% Off
                         </div>
                       </div>
                     )}

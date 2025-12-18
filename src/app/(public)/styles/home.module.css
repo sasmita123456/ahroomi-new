@@ -35,7 +35,7 @@
   color: #fff;
   line-height: normal;
   letter-spacing: 0.26px;
-  text-transform: uppercase;
+  text-transform: inherit;
   height: 24px;
   z-index: 1;
   border-radius: 10px 0 10px 0;
@@ -71,3 +71,4 @@
   left: 0;
   width: 100%;
 }
+

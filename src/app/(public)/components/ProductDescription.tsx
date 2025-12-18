@@ -68,13 +68,13 @@ export default function ProductDescription() {
                 Description
               </h2>
               <div className="prose max-w-none">
-                <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                <p className="text-gray-600 leading-relaxed mb-2 text-sm">
                   <strong>POWER OF MORINGA FOR SKIN HEALTH:</strong>
                   Ahroomi Face Mask is made with pure moringa powder, packed
                   with skin-loving vitamins like A, C, and E. These nutrients
                   help cleanse deeply, soothe dull or tired skin.
                 </p>
-                <p className="text-gray-600 leading-relaxed text-sm mb-4">
+                <p className="text-gray-600 leading-relaxed text-sm mb-2">
                   <strong>DE-TANS & CLEARS BLACKHEADS/WHITEHEADS:</strong>
                   Formulated with natural ingredients like oats, turmeric and
                   sandalwood, this mask gently removes tan, blackheads, and
@@ -130,17 +130,17 @@ export default function ProductDescription() {
 
           {/* Reviews Tab */}
           {activeTab === "reviews" && (
-            <div className="space-y-8">
+            <div className="space-y-2">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">
                 Reviews (1)
               </h2>
 
               {/* Existing Reviews */}
-              <div className="space-y-6">
+              <div className="space-y-2">
                 {reviews.map((review) => (
                   <div
                     key={review.id}
-                    className="border-b border-gray-200 pb-6"
+                    className="border-b border-gray-200 pb-3"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div>
@@ -170,7 +170,7 @@ export default function ProductDescription() {
               </div>
 
               {/* Add Review Form */}
-              <div className="space-y-6">
+              <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-gray-900">
                   Add a review
                 </h3>
@@ -179,7 +179,7 @@ export default function ProductDescription() {
                   marked *
                 </p>
 
-                <form className="space-y-6">
+                <form className="space-y-2">
                   {/* Rating */}
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
@@ -265,7 +265,7 @@ export default function ProductDescription() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="px-8 py-2.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-black transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                    className="mt-3 px-8 py-2.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-black transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                   >
                     Submit
                   </button>

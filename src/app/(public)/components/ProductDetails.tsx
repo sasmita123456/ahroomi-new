@@ -150,10 +150,10 @@ export default function ProductDetails() {
   };
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-5 bg-white">
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
-        <div className="mb-5 text-sm text-gray-500">
+        <div className="mb-4 text-sm text-gray-500">
           <a href="/" className="hover:text-black transition-colors">
             Home
           </a>
@@ -161,87 +161,82 @@ export default function ProductDetails() {
           <span className="text-black font-medium">{product.title}</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4">
           {/* Left Column - Product Images */}
           <div className="sticky top-24 h-fit">
-            {/* Main Image - Fixed Container */}
-            <div className="relative mb-4 rounded-lg overflow-hidden">
-              <div className="relative h-[500px] w-full">
+            <div className="flex  gap-2">
+              {/* Thumbnail Images */}
+              <div className="flex gap-3 flex-col">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveImage(index)}
+                    className={`shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      activeImage === index
+                        ? "border-[#22a6dd]"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={img}
+                        alt={`Thumbnail ${index + 1}`}
+                        width={64}
+                        height={64}
+                        className="object-cover"
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+              {/* Main Image - Fixed Container */}
+              <div className="relative mb-4 rounded-lg overflow-hidden h-[550px]">
                 <Image
                   src={images[activeImage]}
                   alt={`${product.title} ${activeImage + 1}`}
-                  fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
                   priority={activeImage === 0}
                 />
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={() =>
-                  setActiveImage((prev) =>
-                    prev > 0 ? prev - 1 : images.length - 1
-                  )
-                }
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg border border-gray-200"
-              >
-                <FaChevronLeft className="text-gray-700" />
-              </button>
-              <button
-                onClick={() =>
-                  setActiveImage((prev) =>
-                    prev < images.length - 1 ? prev + 1 : 0
-                  )
-                }
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg border border-gray-200"
-              >
-                <FaChevronRight className="text-gray-700" />
-              </button>
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full">
-                {activeImage + 1} / {images.length}
-              </div>
-            </div>
-
-            {/* Thumbnail Images */}
-            <div className="flex gap-3 overflow-x-auto pb-2 px-1">
-              {images.map((img, index) => (
+                {/* Navigation Arrows */}
                 <button
-                  key={index}
-                  onClick={() => setActiveImage(index)}
-                  className={`shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                    activeImage === index
-                      ? "border-[#22a6dd]"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
+                  onClick={() =>
+                    setActiveImage((prev) =>
+                      prev > 0 ? prev - 1 : images.length - 1
+                    )
+                  }
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg border border-gray-200"
                 >
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={img}
-                      alt={`Thumbnail ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
-                  </div>
+                  <FaChevronLeft className="text-gray-700" />
                 </button>
-              ))}
+                <button
+                  onClick={() =>
+                    setActiveImage((prev) =>
+                      prev < images.length - 1 ? prev + 1 : 0
+                    )
+                  }
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg border border-gray-200"
+                >
+                  <FaChevronRight className="text-gray-700" />
+                </button>
+                {/* Image Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full">
+                  {activeImage + 1} / {images.length}
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Right Column - Product Details */}
-          <div className="lg:pl-8">
+          <div className="lg:pl-5">
             {/* Product Title with Weight */}
             <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800 mb-3">
               {product.title}
-
               <span className="text-xl text-gray-600">({product.weight})</span>
             </h2>
 
             {/* Rating and Reviews */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-3">
+              {/* Stars */}
               <div className="flex items-center">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="text-yellow-500 text-lg">
@@ -255,28 +250,34 @@ export default function ProductDetails() {
                   </span>
                 ))}
               </div>
-              <span className="text-gray-500 text-sm">
-                {product.reviews} customer review
-                {product.reviews !== 1 ? "s" : ""}
+
+              {/* Rating number */}
+              <span className="text-sm font-semibold text-gray-700">
+                {product.rating.toFixed(1)}
               </span>
             </div>
 
             {/* Price and Stock Status */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-3">
+            <div className="flex items-start gap-3">
+              {/* Price (top) */}
+              <div className="flex flex-col leading-tight">
                 <span className="text-2xl font-semibold text-gray-800">
-                  ₹{product.price.toFixed(2)}
+                  ₹{product.price}
                 </span>
                 <span className="text-lg text-gray-400 line-through">
-                  ₹{product.originalPrice.toFixed(2)}
-                </span>
-                <span className="px-2 py-1 bg-red-100 text-red-700 text-sm font-semibold rounded-full">
-                  {product.discount} off
-                </span>
-                <span className="px-2 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
-                  Save ₹{(product.originalPrice - product.price).toFixed(2)}
+                  ₹{product.originalPrice}
                 </span>
               </div>
+
+              {/* Discount */}
+              <span className="px-2 py-1 bg-red-100 text-red-700 text-sm font-semibold rounded-full">
+                {product.discount} off
+              </span>
+
+              {/* Save amount */}
+              <span className="px-2 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                Save ₹{product.originalPrice - product.price}
+              </span>
               <span
                 className={`px-3 py-1 rounded-full text-sm font-semibold ${
                   product.inStock
@@ -289,14 +290,14 @@ export default function ProductDetails() {
             </div>
 
             {/* Description */}
-            <div className="mb-5">
+            <div className="mb-3">
               <p className="text-gray-600 leading-relaxed">
                 {product.description}
               </p>
             </div>
 
             {/* Quantity Selector and Add to Cart */}
-            <div className="mb-8">
+            <div className="mb-3">
               <div className="flex flex-wrap items-center gap-4">
                 {/* Quantity Selector */}
                 <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
@@ -339,7 +340,8 @@ export default function ProductDetails() {
                       <Image
                         src={buynow}
                         alt="Buy Now"
-                        fill
+                        width={16}
+                        height={16}
                         className="
         object-contain
         scale-x-[-1]
@@ -368,11 +370,9 @@ export default function ProductDetails() {
               </div>
             </div>
 
-      
-
             {/* Quantity Selection (Weight/Variant) */}
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Size</h3>
+            <div className="mb-3">
+              {/* <h3 className="text-lg font-semibold text-gray-800 mb-2">Size</h3> */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {weightOptions.map((option) => (
                   <button
@@ -391,19 +391,20 @@ export default function ProductDetails() {
                 ))}
               </div>
             </div>
-                     {/* Available Offers Section */}
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+
+            {/* Available Offers Section */}
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
                 <FaTag className="text-[#00652f]" />
                 Available offers
               </h3>
 
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {visibleOffers.map((offer) => (
                   <div key={offer.id} className="transition-all">
                     <div className="flex items-start gap-3">
                       <div className="flex-1">
-                        <div className="flex items-center gap-1 mb-1">
+                        <div className="flex items-center gap-1">
                           <span className={`${offer.textColor}`}>
                             {offer.title}
                           </span>
@@ -427,7 +428,7 @@ export default function ProductDetails() {
               {offers.length > 4 && (
                 <button
                   onClick={() => setShowAllOffers(!showAllOffers)}
-                  className="mt-4 flex items-center gap-2 text-[#00652f] hover:text-blue-800 font-medium text-sm"
+                  className="mt-2 flex items-center gap-2 text-[#00652f] hover:text-blue-800 font-medium text-sm"
                 >
                   {showAllOffers ? (
                     <>
@@ -444,16 +445,14 @@ export default function ProductDetails() {
               )}
             </div>
 
-         
-
             {/* Product Meta Information */}
-            <div className="border-t border-gray-200 pt-6 flex items-center gap-6 ">
+            <div className="border-t border-gray-200 pt-3 flex items-center gap-6">
               <div className="flex items-center gap-2">
-                <span className="text-gray-500 ">SKU:</span>
+                <span className="text-gray-500">SKU:</span>
                 <span className="text-gray-900 font-medium">{product.sku}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-gray-500 ">Category:</span>
+                <span className="text-gray-500">Category:</span>
                 <span className="text-gray-900 font-medium">
                   {product.category}
                 </span>
@@ -467,7 +466,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Wishlist and Share */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="mt-3 pt-3 border-t border-gray-200">
               <div className="flex items-center gap-6">
                 <button className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition-colors group">
                   <div className="p-2 border border-gray-300 rounded-full group-hover:border-red-300 group-hover:bg-red-50 transition-colors">
