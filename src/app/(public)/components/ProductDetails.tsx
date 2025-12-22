@@ -371,8 +371,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Quantity Selection (Weight/Variant) */}
-            <div className="mb-3">
-              {/* <h3 className="text-lg font-semibold text-gray-800 mb-2">Size</h3> */}
+            {/* <div className="mb-3">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {weightOptions.map((option) => (
                   <button
@@ -390,7 +389,7 @@ export default function ProductDetails() {
                   </button>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Available Offers Section */}
             <div className="mb-3">

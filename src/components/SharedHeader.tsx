@@ -14,14 +14,19 @@ import {
 
 import { FaUserCircle } from "react-icons/fa";
 import { MdInventory, MdPeopleAlt } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 
 interface SharedHeaderProps {
   toggleSidebar: () => void;
   user?: any;
-  userRole: 'ADMIN' | 'CMS';
+  userRole: "ADMIN" | "CMS";
 }
 
-export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHeaderProps) {
+export default function SharedHeader({
+  toggleSidebar,
+  user,
+  userRole,
+}: SharedHeaderProps) {
   const router = useRouter();
 
   const [openProfile, setOpenProfile] = useState(false);
@@ -61,25 +66,32 @@ export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHe
 
   // Get profile link based on role
   const getProfileLink = () => {
-    return userRole === 'ADMIN' ? "/admin/Profile" : "/cms/profile";
+    return userRole === "ADMIN" ? "/admin/Profile" : "/cms/profile";
   };
 
   // Get settings link based on role
   const getSettingsLink = () => {
-    return userRole === 'ADMIN' ? "/admin/settings" : "/cms/settings";
+    return userRole === "ADMIN" ? "/admin/settings" : "/cms/settings";
   };
 
   return (
-    <header className="h-20 bg-white shadow-sm flex items-center px-4 justify-between border-b">
-
-      {/* Sidebar Toggle */}
-      <button onClick={toggleSidebar} className="text-2xl text-gray-700">
-        <FiMenu />
-      </button>
+    <header className="py-2.5 shadow-sm bg-white border-b border-gray-200 flex items-center px-6 justify-between sticky top-0 ">
+      {/* LEFT SECTION - SEARCH BAR */}
+      <div className="flex items-center flex-1">
+        <div className="relative w-96 max-w-lg">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <FiSearch className="h-5 w-5 text-gray-500" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full pl-12 pr-4 py-2.5 text-gray-600 bg-[#F9FAFB] border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#04535c] focus:border-transparent transition-all duration-200 text-base "
+          />
+        </div>
+      </div>
 
       {/* RIGHT SECTION */}
-      <div className="flex items-center gap-6">
-
+      <div className="flex items-center justify-end gap-2">
         {/* NOTIFICATIONS */}
         <div ref={notifRef} className="relative">
           <button
@@ -87,42 +99,64 @@ export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHe
               setOpenNotifications(!openNotifications);
               setOpenProfile(false);
             }}
-            className="relative text-2xl text-gray-700 hover:text-blue-500"
+            className="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
           >
-            <FiBell />
+            <FiBell className="h-5 w-5" />
             {/* Badge */}
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              3
-            </span>
+            <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
           </button>
 
           {/* NOTIFICATION DROPDOWN */}
           {openNotifications && (
-            <div
-              className="absolute right-0 mt-3 w-80 bg-white shadow-xl border rounded-lg z-50 animate-dropdown"
-            >
-              <div className="p-4 border-b">
+            <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50 animate-dropdown">
+              <div className="px-5 py-4 bg-linear-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
                 <p className="font-semibold text-gray-900">Notifications</p>
+                <p className="text-xs text-gray-600 mt-1">You have 3 new notifications</p>
               </div>
 
-              <ul className="max-h-60 overflow-auto">
-
-                <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-gray-900 font-medium flex items-center gap-2">
-                  <FiBell className="text-blue-500 text-lg" />
-                  New notification
+              <ul className="divide-y divide-gray-100">
+                <li className="px-5 py-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 p-2 bg-blue-100 rounded-full">
+                      <FiBell className="text-blue-600 text-sm" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">New notification</p>
+                      <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
+                    </div>
+                  </div>
                 </li>
 
-                <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-gray-900 font-medium flex items-center gap-2">
-                  <MdInventory className="text-yellow-500 text-xl" />
-                  System update
+                <li className="px-5 py-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 p-2 bg-yellow-100 rounded-full">
+                      <MdInventory className="text-yellow-600 text-sm" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">System update</p>
+                      <p className="text-xs text-gray-500 mt-1">1 hour ago</p>
+                    </div>
+                  </div>
                 </li>
 
-                <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-gray-900 font-medium flex items-center gap-2">
-                  <MdPeopleAlt className="text-green-600 text-xl" />
-                  New message
+                <li className="px-5 py-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 p-2 bg-green-100 rounded-full">
+                      <MdPeopleAlt className="text-green-600 text-sm" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">New message</p>
+                      <p className="text-xs text-gray-500 mt-1">3 hours ago</p>
+                    </div>
+                  </div>
                 </li>
-
               </ul>
+              
+              <div className="px-5 py-3 bg-gray-50 border-t border-gray-100">
+                <button className="text-xs font-medium text-blue-600 hover:text-blue-800">
+                  View all notifications
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -134,38 +168,49 @@ export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHe
               setOpenProfile(!openProfile);
               setOpenNotifications(false);
             }}
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 transition"
+            className="flex items-center gap-3 py-2 pl-2 pr-3 rounded-lg hover:bg-gray-100 transition-all duration-200"
           >
-            <FaUserCircle className="text-3xl text-gray-600" />
-            <span className="text-gray-800 font-medium hidden md:block">
-              {user?.name || (userRole === 'ADMIN' ? "Admin" : "CMS User")}
-            </span>
-            <FiChevronDown className="text-gray-600" />
+            <div className="h-8 w-8 rounded-full bg-linear-to-br from-[#067a87] to-[#04535c] flex items-center justify-center text-white font-medium shadow-sm">
+              {user?.name?.charAt(0) || (userRole === "ADMIN" ? "A" : "C")}
+            </div>
+            <div className="hidden md:block text-left">
+              <p className="text-sm font-medium text-gray-900">
+                {user?.name || (userRole === "ADMIN" ? "Admin" : "CMS User")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {userRole === "ADMIN" ? "Administrator" : "Content Manager"}
+              </p>
+            </div>
+            <FiChevronDown className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${openProfile ? 'rotate-180' : ''}`} />
           </button>
 
           {/* PROFILE DROPDOWN */}
           {openProfile && (
-            <div
-              className="absolute right-0 mt-3 w-86 bg-white shadow-xl border rounded-lg z-50 animate-dropdown"
-            >
-              <div className="p-4 border-b">
-                <p className="font-semibold text-gray-900">Logged in as</p>
-                <p className="text-gray-800 text-sm">{user?.email || "user@example.com"}</p>
-                <p className="text-gray-600 text-xs mt-1">
-                  Role: {userRole === 'ADMIN' ? 'Administrator' : 'Content Manager'}
+            <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50 animate-dropdown">
+              <div className="px-5 py-4 bg-linear-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
+                <p className="font-semibold text-gray-900">Account</p>
+                <p className="text-sm text-gray-600 mt-1 truncate">
+                  {user?.email || "user@example.com"}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Role: {userRole === "ADMIN" ? "Administrator" : "Content Manager"}
                 </p>
               </div>
 
               <ul className="py-2">
-
                 {/* Profile Update */}
                 <li>
                   <button
                     onClick={() => router.push(getProfileLink())}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100 flex gap-2 items-center text-gray-900 font-medium"
+                    className="w-full text-left px-5 py-3 hover:bg-gray-50 flex gap-3 items-center transition-colors duration-150"
                   >
-                    <FaUserCircle className="text-blue-500 text-xl" />
-                    Profile Update
+                    <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                      <FaUserCircle className="text-blue-600 text-sm" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Profile</p>
+                      <p className="text-xs text-gray-500">Update your information</p>
+                    </div>
                   </button>
                 </li>
 
@@ -173,10 +218,15 @@ export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHe
                 <li>
                   <button
                     onClick={() => router.push(getSettingsLink())}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100 flex gap-2 items-center text-gray-900 font-medium"
+                    className="w-full text-left px-5 py-3 hover:bg-gray-50 flex gap-3 items-center transition-colors duration-150"
                   >
-                    <FiSettings className="text-gray-700 text-xl" />
-                    Settings
+                    <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
+                      <FiSettings className="text-gray-600 text-sm" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Settings</p>
+                      <p className="text-xs text-gray-500">Manage your preferences</p>
+                    </div>
                   </button>
                 </li>
 
@@ -184,18 +234,21 @@ export default function SharedHeader({ toggleSidebar, user, userRole }: SharedHe
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600 flex gap-2 items-center font-semibold"
+                    className="w-full text-left px-5 py-3 hover:bg-red-50 flex gap-3 items-center transition-colors duration-150 border-t border-gray-100 mt-2"
                   >
-                    <FiLogOut className="text-red-600 text-lg" />
-                    Logout
+                    <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
+                      <FiLogOut className="text-red-600 text-sm" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-red-600">Logout</p>
+                      <p className="text-xs text-gray-500">Sign out of your account</p>
+                    </div>
                   </button>
                 </li>
-
               </ul>
             </div>
           )}
         </div>
-
       </div>
     </header>
   );

@@ -31,9 +31,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <div className="flex h-screen overflow-hidden">
         <SharedSidebar isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} userRole="ADMIN" />
 
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 bg-[#E5F4EE]">
           <SharedHeader toggleSidebar={() => setIsOpen(!isOpen)} user={user} userRole="ADMIN" />
-          <main className="p-6 overflow-y-auto">{children}</main>
+          <main className="p-4 overflow-y-auto">{children}</main>
         </div>
       </div>
     </MenuProvider>

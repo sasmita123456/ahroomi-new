@@ -8,6 +8,8 @@ import { ReusableTable } from '@/components/Table';
 import { categoryService, CategoryResponse } from '@/services/category.service';
 import { encryptPayload } from '@/utils/encryption';
 import { useRouter } from 'next/navigation';
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { FiPlus } from "react-icons/fi";
 
 interface Category extends CategoryResponse {
   isActive?: boolean;
@@ -134,6 +136,12 @@ export default function CategoryListPage() {
     {
       header: 'Slug',
       accessorKey: 'slug',
+      // Use a custom cell to truncate long text
+      cell: ({ getValue }: any) => (
+        <div className="truncate w-[115px]" title={getValue()}>
+          {getValue()}
+        </div>
+      )
     },
     {
       header: 'Thumbnail',
@@ -210,7 +218,7 @@ export default function CategoryListPage() {
     return (
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold text-gray-800">Category List</h1>
+          <h2 className="text-2xl font-semibold text-gray-800">Category List</h2>
           <Link 
             href="/admin/category" 
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors"
@@ -226,26 +234,28 @@ export default function CategoryListPage() {
   }
 
   return (
-    <section className="p-6" style={{ background: "#fff", borderRadius: "10px" }}>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Category List</h1>
-        <div>
+    <section className="bg-white rounded-lg p-4">
+      <div className="flex justify-between items-center mb-3">
+        <h2 className="text-lg font-semibold text-gray-800">Category List</h2>
+        <div className='flex items-center gap-2'>
           <Link 
             href="/admin/category/new" 
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors mr-2"
+            className="flex items-center gap-1 bg-[#056d6e] text-white text-sm px-3 py-2 rounded-full hover:bg-[#04535c] transition-all duration-300"
           >
+             <FiPlus />
             Add Category
           </Link>
           <Link 
             href="/admin/category" 
-            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors"
+          className="flex items-center gap-1 bg-[#ebf9f2] text-[#056d6e] border border-[#056d6e] font-medium text-sm px-3 py-2 rounded-full transition-all duration-300 hover:bg-[#056d6e] hover:text-white hover:shadow-md"
           >
+            <FaLongArrowAltLeft />
             Back to Categories
           </Link>
         </div>
       </div>
       
-      <div className="bg-white border rounded-lg shadow-sm p-6">
+      <div className="bg-white border border-[#c5dcdc] rounded-lg p-4">
         <ReusableTable<Category>
           columns={columns}
           data={data?.categories || []}

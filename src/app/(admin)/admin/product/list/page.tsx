@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { FiPlus } from "react-icons/fi";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 import { ReusableTable } from '@/components/Table';
 import { productService, ProductResponse } from "@/services/product.service";
 import { encryptPayload } from "@/utils/encryption";
@@ -175,7 +176,7 @@ export default function ProductListPage() {
             href="/admin/product/new" 
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors flex items-center gap-2"
           >
-            <FiPlus /> Add Product
+            <FiPlus /> Add Product 
           </Link>
         </div>
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -186,26 +187,27 @@ export default function ProductListPage() {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Product List</h1>
-        <div >
+    <div className="bg-white border border-[#c5dcdc] rounded-lg p-4">
+      <div className="flex justify-between items-center mb-3">
+        <h2 className="text-lg font-semibold text-gray-800">Product List</h2>
+        <div className="flex items-center gap-2">
           <Link 
             href="/admin/product/new" 
-            className="block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors mr-2"
+            className="flex items-center gap-1 bg-[#056d6e] text-white text-sm px-3 py-2 rounded-full hover:bg-[#04535c] transition-all duration-300"
           >
             <FiPlus /> Add Product
           </Link>
           <Link 
             href="/admin/product" 
-            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors"
+          className="flex items-center gap-1 bg-[#ebf9f2] text-[#056d6e] border border-[#056d6e] font-medium text-sm px-3 py-2 rounded-full transition-all duration-300 hover:bg-[#056d6e] hover:text-white hover:shadow-md"
           >
+            <FaLongArrowAltLeft />
             Back to Products
           </Link>
         </div>
       </div>
 
-      <div className="bg-white border rounded-lg shadow-sm p-6">
+      <div className="bg-white border border-[#c5dcdc] rounded-lg p-4">
         <ReusableTable<Product>
           columns={columns}
           data={products}

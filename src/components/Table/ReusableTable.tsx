@@ -337,13 +337,13 @@ const ReusableTable = <T extends object>({
   }, [pageIndex, pageSize, sortBy, sortOrder, search, fetchData]);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+    <div className="bg-white rounded-lg shadow-md border border-gray-200">
       {/* Table Header with Export and Search */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gray-200">
         <div className="relative mb-2 sm:mb-0" ref={exportRef}>
           <button
             onClick={() => setShowExportDropdown(!showExportDropdown)}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors shadow-sm"
+            className="flex items-center text-sm px-4 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-700 transition-colors shadow-sm"
           >
             <FaFileExport className="mr-2" />
             <span>Export</span>
@@ -381,7 +381,7 @@ const ReusableTable = <T extends object>({
             <input
               type="text"
               placeholder="Search..."
-              className="pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm w-full sm:w-64 text-gray-900 placeholder-gray-500"
+              className="pl-3 pr-10 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm w-full sm:w-64 text-gray-900 placeholder-gray-500"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -399,14 +399,14 @@ const ReusableTable = <T extends object>({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-100">
+        <table className="w-full min-w-full divide-gray-200">
+          <thead className="bg-[#bde8ed]">
             {table.getHeaderGroups().map((headerGroup: HeaderGroup<T>) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
                   <th 
                     key={header.id}
-                    className={`px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider ${
+                    className={`px-4 py-4 text-left text-xs font-medium text-gray-900 uppercase tracking-wider ${
                       sortable && header.column.getCanSort() ? 'cursor-pointer hover:bg-gray-200' : ''
                     }`}
                     onClick={header.column.getToggleSortingHandler()}
@@ -427,10 +427,10 @@ const ReusableTable = <T extends object>({
               </tr>
             ))}
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-gray-200">
             {isLoading ? (
               <tr>
-                <td colSpan={table.getAllColumns().length} className="px-6 py-4 text-center">
+                <td colSpan={table.getAllColumns().length} className="px-4 py-3 text-center">
                   <div className="flex justify-center items-center h-32">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                   </div>
@@ -438,7 +438,7 @@ const ReusableTable = <T extends object>({
               </tr>
             ) : data.length === 0 ? (
               <tr>
-                <td colSpan={table.getAllColumns().length} className="px-6 py-4 text-center text-gray-500">
+                <td colSpan={table.getAllColumns().length} className="px-4 py-3 text-center text-gray-500">
                   No data found
                 </td>
               </tr>
@@ -452,7 +452,7 @@ const ReusableTable = <T extends object>({
                   `}
                 >
                   {row.getVisibleCells().map((cell: Cell<T, unknown>) => (
-                    <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td key={cell.id} className="px-4 py-3 text-sm text-gray-900">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'; // Import useRouter
 import { ReusableTable } from '@/components/Table';
 import { toast } from 'react-toastify';
 import { useMenuContext } from '@/contexts/MenuContext';
+import { FiPlus } from "react-icons/fi";
 
 export default function MenuListPage() {
   const router = useRouter(); // Initialize router
@@ -143,7 +144,7 @@ export default function MenuListPage() {
           {getValue().map((role: string) => (
             <span 
               key={role} 
-              className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800"
+              className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800"
             >
               {role}
             </span>
@@ -182,13 +183,14 @@ export default function MenuListPage() {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Menu Management</h1>
+    <div className="bg-white rounded-lg p-4">
+      <div className="flex justify-between items-center mb-3">
+        <h2 className="text-lg font-semibold text-gray-800">Menu Management</h2>
         <Link 
           href="/admin/menu-management/new"
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          className="flex items-center gap-1 bg-[#056d6e] text-white text-sm px-3 py-2 rounded-full hover:bg-[#04535c] transition-all duration-300"
         >
+           <FiPlus />
           Add New Menu
         </Link>
       </div>
@@ -199,7 +201,7 @@ export default function MenuListPage() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="">
         <ReusableTable<MenuItem>
           columns={columns}
           data={paginatedMenus}

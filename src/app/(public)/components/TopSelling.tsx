@@ -87,7 +87,7 @@ export default function TopSelling({ items }: TopSellingProps) {
                       <img
                         src={p.image}
                         alt={p.title}
-                        className="w-full h-[300px] object-cover block transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-[230px] object-cover block transition-transform duration-300 group-hover:scale-105"
                       />
 
                       {/* FLOATING ICONS */}
@@ -111,18 +111,18 @@ export default function TopSelling({ items }: TopSellingProps) {
                   </div>
 
                   {/* CONTENT */}
-                  <div className="px-4 pb-6 pt-4 text-center">
-                    <div className="text-[16px] font-semibold text-black mb-2">
+                  <div className="px-4 pb-4 pt-4 text-center">
+                    <div className="text-[16px] font-semibold text-black mb-1">
                       <span className={styles.productTitleHover}>{p.title}</span>
                     </div>
 
                     <div className="flex items-center justify-center gap-3 ">
                       <div className="text-[20px] font-bold text-black">
-                        ₹{p.price}.00
+                        ₹{p.price}
                       </div>
                       {discount > 0 && (
                         <div className="text-[14px] text-gray-400 line-through">
-                          ₹{oldPrice}.00
+                          ₹{oldPrice}
                         </div>
                       )}
                     </div>

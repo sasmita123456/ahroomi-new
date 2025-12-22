@@ -7,6 +7,7 @@ import { encryptPayload } from '@/utils/encryption';
 import Link from 'next/link';
 import { useMenuContext } from '@/contexts/MenuContext';
 import { toast } from 'react-toastify';
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 export default function NewMenuPage() {
   const router = useRouter();
@@ -173,13 +174,14 @@ export default function NewMenuPage() {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Add New Menu</h1>
+    <div className="bg-white rounded-lg p-4">
+      <div className="flex justify-between items-center mb-3">
+        <h2 className="text-lg font-semibold text-gray-800">Add New Menu</h2>
         <Link 
           href="/admin/menu-management/list"
-          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+          className="flex items-center gap-1 bg-[#ebf9f2] text-[#056d6e] border border-[#056d6e] font-medium text-sm px-3 py-2 rounded-full transition-all duration-300 hover:bg-[#056d6e] hover:text-white hover:shadow-md"
         >
+           <FaLongArrowAltLeft />
           Back to List
         </Link>
       </div>
@@ -190,11 +192,11 @@ export default function NewMenuPage() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-white border border-[#c5dcdc] rounded-lg p-4">
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Menu Name *
               </label>
               <input
@@ -202,13 +204,13 @@ export default function NewMenuPage() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150"
                 placeholder="Enter menu name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Link *
               </label>
               <input
@@ -216,13 +218,13 @@ export default function NewMenuPage() {
                 name="link"
                 value={formData.link}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150"
                 placeholder="Enter link (e.g., /admin/dashboard)"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Icon
               </label>
               <input
@@ -230,17 +232,17 @@ export default function NewMenuPage() {
                 name="icon"
                 value={formData.icon}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150"
                 placeholder="Enter icon class (e.g., MdDashboard)"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Parent Menu
               </label>
               {menusLoading ? (
-                <div className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150">
                   Loading menus...
                 </div>
               ) : (
@@ -248,7 +250,7 @@ export default function NewMenuPage() {
                   name="parentId"
                   value={formData.parentId}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150"
                 >
                   <option value="">None (Top Level Menu)</option>
                   {menus
@@ -266,7 +268,7 @@ export default function NewMenuPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Order
               </label>
               <input
@@ -275,13 +277,13 @@ export default function NewMenuPage() {
                 min="0"
                 value={formData.order}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 appearance-none focus:outline-none focus:ring-1 focus:ring-[#056d6e] focus:border-[#056d6e] sm:text-sm transition duration-150"
                 placeholder="Enter order number"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="text-gray-700 font-medium flex items-center gap-2 text-[15px]">
                 Roles *
               </label>
               <div className="space-y-2">
@@ -335,17 +337,18 @@ export default function NewMenuPage() {
             </div>
           </div>
 
-          <div className="mt-8 flex justify-end space-x-4">
+          <div className="mt-6 flex justify-center space-x-2">
             <Link 
               href="/admin/menu-management/list"
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              className="px-4 py-2 text-sm rounded-full font-medium border border-gray-400 text-gray-500 transition-all duration-300 hover:bg-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+
             >
               Cancel
             </Link>
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              className="px-4 py-2 rounded-full font-medium text-sm transition-all duration-300 bg-[#056d6e] text-white hover:bg-[#04535c]"
             >
               {loading ? 'Creating...' : 'Create Menu'}
             </button>

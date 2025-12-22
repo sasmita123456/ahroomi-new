@@ -29,8 +29,10 @@ import { FaBoxes, FaPalette, FaTags, FaPercent } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { menuService, MenuItem } from "@/services/menu.service";
 import { useMenuContext } from "@/contexts/MenuContext";
+import ahroomiLogo from "../../public/assets/images/blackLogo.png";
 
 interface SharedSidebarProps {
   isOpen: boolean;
@@ -185,30 +187,26 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
         {hasChildren ? (
           // Menu item with children (dropdown)
           <div
-            className={`flex items-center gap-3 p-3 rounded-lg border shadow-sm transition-all duration-200 cursor-pointer
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer
               ${isActive
-                ? "bg-green-100 border-green-400 shadow-md"
-                : "bg-white hover:bg-gray-100"
+                ? "bg-[#CAF8E4]"
+                : "hover:bg-[#3EA296]/20"
               }
             `}
-            style={{
-              borderLeft: isActive ? "4px solid #84CE2F" : "4px solid transparent",
-            }}
             onClick={() => toggleExpand(item._id)}
           >
             {/* ICON */}
             <IconComponent
-              className={`text-2xl transition-colors duration-200 ${
-                isActive ? "text-green-600" : ""
+              className={`text-lg transition-colors duration-200 ${
+                isActive ? "text-[#056D6E]" : "text-white"
               }`}
-              style={{ color: isActive ? "#84CE2F" : "#84CE2F" }}
             />
 
             {/* NAME */}
             {isOpen && (
               <span
-                className={`font-medium flex-grow ${
-                  isActive ? "text-green-800 font-semibold" : "text-gray-700"
+                className={`font-medium grow text-sm ${
+                  isActive ? "text-[#056D6E] font-semibold" : "text-white"
                 }`}
               >
                 {item.name}
@@ -217,11 +215,11 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
 
             {/* EXPAND/COLLAPSE ICON */}
             {isOpen && hasChildren && (
-              <span>
+              <span className={isActive ? "text-[#056D6E]" : "text-white"}>
                 {isExpanded ? (
-                  <MdExpandLess className="text-gray-500" />
+                  <MdExpandLess />
                 ) : (
-                  <MdExpandMore className="text-gray-500" />
+                  <MdExpandMore />
                 )}
               </span>
             )}
@@ -230,29 +228,25 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
           // Menu item without children (direct link)
           <Link
             href={item.link}
-            className={`flex items-center gap-3 p-3 rounded-lg border shadow-sm transition-all duration-200
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200
               ${isActive
-                ? "bg-green-100 border-green-400 shadow-md"
-                : "bg-white hover:bg-gray-100"
+                ? "bg-[#CAF8E4]"
+                : "hover:bg-[#3EA296]/20"
               }
             `}
-            style={{
-              borderLeft: isActive ? "4px solid #84CE2F" : "4px solid transparent",
-            }}
           >
             {/* ICON */}
             <IconComponent
-              className={`text-2xl transition-colors duration-200 ${
-                isActive ? "text-green-600" : ""
+              className={`text-lg transition-colors duration-200 ${
+                isActive ? "text-[#056D6E]" : "text-white"
               }`}
-              style={{ color: isActive ? "#84CE2F" : "#84CE2F" }}
             />
 
             {/* NAME */}
             {isOpen && (
               <span
-                className={`font-medium flex-grow ${
-                  isActive ? "text-green-800 font-semibold" : "text-gray-700"
+                className={`font-medium grow text-sm ${
+                  isActive ? "text-[#056D6E] font-semibold" : "text-white"
                 }`}
               >
                 {item.name}
@@ -261,25 +255,38 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
           </Link>
         )}
 
-        {/* SUBMENU ITEMS */}
+        {/* SUBMENU ITEMS WITH STRAIGHT LINE DESIGN */}
         {isOpen && hasChildren && isExpanded && (
-          <div className="ml-8 mt-2 space-y-1">
-            {item.children!.map((subItem) => {
-              const isSubActive = pathname === subItem.link;
-              return (
-                <div
-                  key={subItem._id}
-                  className={`block py-2 px-3 rounded transition-colors cursor-pointer ${
-                    isSubActive
-                      ? "bg-green-100 text-green-800 font-medium"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                  onClick={() => handleSubmenuClick(item, subItem)}
-                >
-                  {subItem.name}
-                </div>
-              );
-            })}
+          <div className="relative">
+            {/* Vertical line connecting to parent */}
+            <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-[#4ABBA5] opacity-60"></div>
+            
+            {/* Submenu items */}
+            <div className="ml-7 mt-1 space-y-1">
+              {item.children!.map((subItem, index) => {
+                const isSubActive = pathname === subItem.link;
+                const isLastItem = index === item.children!.length - 1;
+                
+                return (
+                  <div key={subItem._id} className="relative">
+                    {/* Horizontal line connecting to submenu item */}
+                    
+                    {/* Submenu item */}
+                    <Link
+                      href={subItem.link}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-200 ${
+                        isSubActive
+                          ? "text-[#d9d86c] font-semibold"
+                          : "text-white hover:bg-[#3EA296]/20"
+                      }`}
+                    >
+                      <span className="w-1 h-1 rounded-full bg-current opacity-60"></span>
+                      <span className="text-sm">{subItem.name}</span>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
@@ -288,31 +295,47 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
 
   return (
     <aside
-      className={`h-full bg-white shadow-xl border-r transition-all duration-300 flex flex-col
+      className={`h-full shadow-xl border-r transition-all duration-300 flex flex-col
         ${isOpen ? "w-64" : "w-20"}
       `}
+      style={{ backgroundColor: "#04535C" }}
     >
       {/* HEADER */}
       <div
-        className="flex items-center justify-between px-4 h-16 border-b"
-        style={{ backgroundColor: "#22A6DD" }}
+        className="flex items-center justify-center px-4 py-2 relative border-b border-[#2f676e]"
       >
-        <span className="text-lg font-bold text-white tracking-wide">
-          {isOpen ? (userRole === 'ADMIN' ? "Admin Panel" : "CMS Panel") : (userRole === 'ADMIN' ? "AP" : "CP")}
-        </span>
+        <div className="flex items-center">
+          {isOpen ? (
+            <Image 
+              src={ahroomiLogo} 
+              alt="Ahroomi Logo" 
+              width={120} 
+              height={40}
+              className="object-contain invert"
+            />
+          ) : (
+            <Image 
+              src={ahroomiLogo} 
+              alt="Ahroomi Logo" 
+              width={32} 
+              height={32}
+              className="object-contain invert"
+            />
+          )}
+        </div>
 
-        <button onClick={toggle} className="text-white text-xl">
-          {isOpen ? <FiChevronLeft /> : <FiChevronRight />}
+        <button onClick={toggle} className="h-8 w-8 text-xl absolute -right-3 shadow-lg flex items-center justify-center rounded-full bg-white text-[#524f4f] z-1">
+          {isOpen ? <FiChevronLeft className="rounded-full border border-[#524f4f]"/> : <FiChevronRight className="rounded-full border border-[#524f4f]"/>}
         </button>
       </div>
 
       {/* MENU LIST */}
-      <nav className="p-3 overflow-y-auto h-[calc(100%-4rem)] space-y-2">
+      <nav className="py-3 px-4 overflow-y-auto h-[calc(100%-4rem)] space-y-1 hide-scrollbar">
         {(menus[userRole] || []).map(renderMenuItem)}
       </nav>
 
       {/* FOOTER */}
-      <div className="mt-auto p-4 text-center text-xs text-gray-500">
+      <div className="mt-auto p-4 text-center text-xs text-white/70">
         {isOpen && `© 2025 ${userRole === 'ADMIN' ? "Admin" : "CMS"} Panel`}
       </div>
     </aside>
