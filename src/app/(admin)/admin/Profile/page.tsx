@@ -30,7 +30,7 @@ export default function ProfileUpdatePage() {
     const loadProfile = async () => {
       try {
         const response = await userService.getProfile();
-        const user = response.user;
+        const user = response.data;
         setForm({
           name: user.name || "",
           email: user.email || "",
@@ -74,7 +74,7 @@ export default function ProfileUpdatePage() {
       setSuccessMsg(response.message || "Profile updated successfully.");
       
       // Update the form with the returned user data
-      const updatedUser = response.user;
+      const updatedUser = response.data;
       setForm(prev => ({
         ...prev,
         name: updatedUser.name || prev.name,

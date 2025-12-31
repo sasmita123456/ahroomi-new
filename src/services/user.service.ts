@@ -6,6 +6,7 @@ interface User {
   name: string;
   email: string;
   role: string;
+   mobile?: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -26,9 +27,9 @@ interface UpdateUserData {
 
 export const userService = {
   getProfile: async (): Promise<StandardResponse<User>> => {
-    const response = await apiClient.get<StandardResponse<User>>('/protected/profile');
-    return response.data;
-  },
+  const response = await apiClient.get<StandardResponse<User>>('/protected/profile');
+  return response.data;
+},
 
   updateProfile: async (data: UpdateProfileData): Promise<StandardResponse<User>> => {
     const response = await apiClient.put<StandardResponse<User>>('/user/profile', data);
