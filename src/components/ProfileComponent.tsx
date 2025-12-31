@@ -13,7 +13,7 @@ export default function ProfileComponent() {
     const fetchProfile = async () => {
       try {
         const data = await userService.getProfile();
-        setUser(data.user);
+        setUser(data.data);
       } catch (err: any) {
         setError(err.message || 'Failed to fetch profile');
       } finally {
