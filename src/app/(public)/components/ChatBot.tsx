@@ -43,13 +43,19 @@ const quickReplies = [
   "Product recommendations"
 ];
 
-// Sequential welcome messages
-const welcomeMessages = [
-  "Hi I'm Renee from AHroomi!",
-  "Good Morning, how are you doing today?",
-  "Welcome to Ahroomi - a world of fragrance!",
-  "How can I help you?"
-];
+// Function to get time-appropriate greeting
+const getTimeBasedGreeting = (): string => {
+  const now = new Date();
+  const hours = now.getHours();
+  
+  if (hours < 12) {
+    return "Good Morning";
+  } else if (hours < 18) {
+    return "Good Afternoon";
+  } else {
+    return "Good Evening";
+  }
+};
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +71,7 @@ const ChatBot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messageSequence, setMessageSequence] = useState(0);
   const [showQuickReplies, setShowQuickReplies] = useState(false);
+  const [greeting, setGreeting] = useState("");
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -74,27 +81,51 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages, isTyping]);
 
+  // Update greeting when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setGreeting(getTimeBasedGreeting());
+    }
+  }, [isOpen]);
+
   // Handle the sequential welcome messages
   useEffect(() => {
-    if (isOpen && messageSequence < welcomeMessages.length) {
+    if (isOpen && messageSequence < 3) {
       const timer = setTimeout(() => {
+        let messageText = "";
+        
+        if (messageSequence === 0) {
+          messageText = "Hi I'm Renee from AHroomi!";
+        } else if (messageSequence === 1) {
+          messageText = `${greeting}, how are you doing today?`;
+        } else if (messageSequence === 2) {
+          messageText = "Welcome to Ahroomi - a world of fragrance!";
+        }
+        
         setMessages(prev => [...prev, {
           sender: 'bot',
-          text: welcomeMessages[messageSequence],
+          text: messageText,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }]);
-        
-        // If this is the last welcome message, show quick replies
-        if (messageSequence === welcomeMessages.length - 1) {
-          setShowQuickReplies(true);
-        }
         
         setMessageSequence(prev => prev + 1);
       }, 1500);
       
       return () => clearTimeout(timer);
+    } else if (isOpen && messageSequence === 3) {
+      const timer = setTimeout(() => {
+        setMessages(prev => [...prev, {
+          sender: 'bot',
+          text: "How can I help you?",
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }]);
+        setShowQuickReplies(true);
+        setMessageSequence(prev => prev + 1);
+      }, 1500);
+      
+      return () => clearTimeout(timer);
     }
-  }, [isOpen, messageSequence]);
+  }, [isOpen, messageSequence, greeting]);
 
   const getCurrentTime = () => {
     return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
