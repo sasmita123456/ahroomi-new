@@ -9,7 +9,7 @@ export default function ProductListPage() {
   return (
     <>
       <main>
-        <InnerBanner title="Product List" image={bannerImg} />
+        <InnerBanner title="List of Products" image={bannerImg} />
         <ProductList />
       </main>
     </>

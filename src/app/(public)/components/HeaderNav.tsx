@@ -22,16 +22,17 @@ export default function HeaderNav() {
   // ... (rest of your megaMenuItems and useEffect hooks remain the same)
   const megaMenuItems = [
     [
+      { name: "Self Care", href: "#" },
       { name: "Essential Oil", href: "#" },
-      { name: "Fragrances", href: "#" },
-      { name: "Air Freshner", href: "#" },
-      { name: "Gift Sets", href: "#" },
-      { name: "Body Mist", href: "#" },
+      { name: "Pocket Perfume", href: "#" }
     ],
     [
-      { name: "Self Care", href: "#" },
-      { name: "Pocket Perfume", href: "#" },
+
+      { name: "Air Freshner", href: "#" },
+      { name: "Gift Sets", href: "#" },
+      { name: "Body Mist", href: "#" }
     ],
+  
   ];
 
   // Close dropdown when clicking outside
@@ -116,7 +117,7 @@ export default function HeaderNav() {
 
                 {/* Mega Menu */}
                 {isMegaMenuOpen && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 pt-2 w-screen max-w-xl z-50 bg-white">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 pt-2 w-screen max-w-[400px] z-50 bg-white">
                     <div className="shadow-2xl rounded-lg overflow-hidden megamenu">
                       <div className="grid grid-cols-2 gap-8 p-8">
                         <div className="grid grid-cols-2 gap-x-8 gap-y-4 min-w-2xs">
@@ -142,7 +143,7 @@ export default function HeaderNav() {
                       {/* View All */}
                       <div className="border-t border-gray-200 bg-gray-50 px-8 py-4">
                         <Link
-                          href="#"
+                          href="/shop"
                           className="inline-flex items-center text-sm font-medium text-gray-900 hover:text-[#22a6dd] transition-colors group"
                         >
                           <span className="mr-2">*View All Product</span>
@@ -171,10 +172,10 @@ export default function HeaderNav() {
               </Link>
               <Link
                 href="/blog"
-                className="group relative text-black hover:text-gray-900 transition-colors duration-200 py-2 text-[17px]"
+                className="group relative text-black hover:text-[#22a6dd] transition-colors duration-200 py-2 text-[17px]"
               >
                 Blog
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300 ease-out"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#22a6dd] group-hover:w-full transition-all duration-300 ease-out"></span>
               </Link>
             </nav>
 

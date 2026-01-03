@@ -53,11 +53,13 @@ export default function Footer() {
               Private Limited
             </h3>
 
-            <button className="relative bg-[#f9c11c] text-black px-6 py-2.5  text-base tracking-wider  whitespace-nowrap border border-[#f9c11c] overflow-hidden group transition-all duration-500 hover:text-[#f9c11c]">
-              <span className="relative z-10">*Shop Now*</span>
+            <Link href="/shop">
+              <button className="relative bg-[#f9c11c] text-black px-6 py-2.5 text-base tracking-wider whitespace-nowrap border border-[#f9c11c] overflow-hidden group transition-all duration-500 hover:text-[#f9c11c]">
+                <span className="relative z-10">*Shop Now*</span>
 
-              <div className="absolute inset-0 bg-white transform -translate-x-full transition-transform duration-500 group-hover:translate-x-0"></div>
-            </button>
+                <div className="absolute inset-0 bg-white transform -translate-x-full transition-transform duration-500 group-hover:translate-x-0"></div>
+              </button>
+            </Link>
           </div>
 
           {/* QUICK LINKS */}
@@ -89,7 +91,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-gray-700">
               <li className="hover:text-[#22a6dd] transition-colors cursor-pointer">
-                <Link href="/what-we-do" className="block">
+                <Link href="/about" className="block">
                   What We Do
                 </Link>
               </li>
@@ -99,7 +101,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="hover:text-[#22a6dd] transition-colors cursor-pointer">
-                <Link href="/latest-posts" className="block">
+                <Link href="/blog" className="block">
                   Latest Posts
                 </Link>
               </li>

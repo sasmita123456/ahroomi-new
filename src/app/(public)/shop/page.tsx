@@ -8,7 +8,7 @@ export default function ShopPage() {
   return (
     <>
       <main>
-        <InnerBanner title="Shop" image={bannerImg} />
+        <InnerBanner title="All Categories" image={bannerImg} />
        <ShopCategory />
       </main>
     </>

@@ -32,7 +32,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { menuService, MenuItem } from "@/services/menu.service";
 import { useMenuContext } from "@/contexts/MenuContext";
-import ahroomiLogo from "../../public/assets/images/blackLogo.png";
+import blackLogo from "../../public/assets/images/blackLogo.png";
 
 interface SharedSidebarProps {
   isOpen: boolean;
@@ -334,18 +334,22 @@ const SharedSidebar: FC<SharedSidebarProps> = ({ isOpen, toggle, userRole }) => 
         <div className="flex items-center">
           {isOpen ? (
             <Image 
-              src={ahroomiLogo} 
+              src={blackLogo} 
               alt="Ahroomi Logo" 
               width={120} 
               height={40}
+                priority
+                loading="eager"
               className="object-contain invert"
             />
           ) : (
             <Image 
-              src={ahroomiLogo} 
+              src={blackLogo} 
               alt="Ahroomi Logo" 
               width={32} 
               height={32}
+                priority
+                loading="eager"
               className="object-contain invert"
             />
           )}

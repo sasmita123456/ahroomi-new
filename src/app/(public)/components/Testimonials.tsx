@@ -24,7 +24,6 @@ export default function Testimonials() {
       text: "The skincare products truly transformed my routine. The serum absorbs quickly and keeps my skin glowing throughout the day!",
       img: review1,
       rating: 5,
-      designation: "Regular Skincare Customer",
       date: "May 9, 2023",
       time: "10.30 PM",
     },
@@ -33,7 +32,6 @@ export default function Testimonials() {
       text: "I absolutely love their organic range! The moisturizer feels lightweight and has made my skin softer in just a few days.",
       img: review2,
       rating: 5,
-      designation: "Beauty Enthusiast",
       date: "June 15, 2023",
       time: "2.45 PM",
     },
@@ -42,7 +40,6 @@ export default function Testimonials() {
       text: "One of the best face creams I've used so far. My skin feels smooth and refreshed, and the fragrance is just perfect!",
       img: review3,
       rating: 4,
-      designation: "Cosmetics Buyer",
       date: "July 22, 2023",
       time: "11.20 AM",
     },
@@ -51,7 +48,6 @@ export default function Testimonials() {
       text: "The cleansing products work amazingly well! They removed oil and dirt gently without drying out my skin.",
       img: review4,
       rating: 5,
-      designation: "Daily Skincare User",
       date: "August 5, 2023",
       time: "4.15 PM",
     },
@@ -60,7 +56,6 @@ export default function Testimonials() {
       text: "These beauty products have become my everyday essentials. The quality is premium and results are clearly visible!",
       img: review5,
       rating: 4,
-      designation: "Makeup & Skincare Lover",
       date: "September 10, 2023",
       time: "9.30 AM",
     },
@@ -69,7 +64,6 @@ export default function Testimonials() {
       text: "Absolutely love the natural ingredients! My sensitive skin feels nourished and irritation-free for the first time.",
       img: review1,
       rating: 5,
-      designation: "Sensitive Skin User",
       date: "October 18, 2023",
       time: "3.20 PM",
     },
@@ -78,7 +72,6 @@ export default function Testimonials() {
       text: "The anti-aging serum works wonders! Visible reduction in fine lines within just two weeks of regular use.",
       img: review2,
       rating: 5,
-      designation: "Premium Skincare User",
       date: "November 5, 2023",
       time: "6.45 PM",
     },
@@ -87,7 +80,6 @@ export default function Testimonials() {
       text: "Perfect for my combination skin. Balances oil production while keeping dry areas hydrated all day long.",
       img: review3,
       rating: 4,
-      designation: "Combination Skin User",
       date: "December 12, 2023",
       time: "1.30 PM",
     },
@@ -204,7 +196,6 @@ export default function Testimonials() {
                 {/* Client Info */}
                 <div className="text-center pt-3 border-t border-gray-100">
                   <h4 className="font-bold text-gray-900 text-base mb-1">{item.name}</h4>
-                  <p className="text-gray-600 text-sm mb-2">{item.designation}</p>
                   <div className="flex items-center justify-center gap-2 text-gray-500 text-xs">
                     <span>{item.date}</span>
                     <span className="w-1 h-1 bg-gray-300 rounded-full"></span>

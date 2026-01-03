@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <>
       <main>
-         <InnerBanner title="BlogDetails" image={innerBanner} />
+         <InnerBanner title="Essential Oils: Pure Care for Mind & Body" image={innerBanner} />
          <BlogDetailSection />
          <InstagramFeed />
       

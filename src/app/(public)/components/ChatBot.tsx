@@ -38,7 +38,7 @@ const getBotResponse = (userMessage: string): string => {
 const quickReplies = [
   "What's your return policy?",
   "Do you offer discounts?",
-  "Track my order",
+  "How to track my order?",
   "Contact customer service",
   "Product recommendations"
 ];

@@ -21,18 +21,18 @@ export default function ProductList() {
         CATEGORIES
       </h3>
       <span className="text-[11px] text-[#1b2a38] bg-[#cdd9e4] px-2 py-1 rounded-full">
-        {shopItems.length} items
+        {shopItems.length} Items
       </span>
     </div>
 
     <ul className="space-y-3">
       {[
-        { name: "SELF CARE", count: 24 },
-        { name: "ESSENTIAL OIL", count: 18 },
-        { name: "POCKET PERFUME", count: 12 },
-        { name: "BODY MIST", count: 8 },
-        { name: "GIFT SETS", count: 6 },
-        { name: "AIR FRESHENER", count: 15 },
+        { name: "Self Care", count: 24 },
+        { name: "Essential Oil", count: 18 },
+        { name: "Pocket Perfume", count: 12 },
+        { name: "Body Mist", count: 8 },
+        { name: "Gift Sets", count: 6 },
+        { name: "Air Freshner", count: 15 },
       ].map((category) => (
         <li key={category.name}>
           <button className="w-full flex items-center justify-between py-3 px-4 rounded-xl bg-white hover:bg-[#e8f2fa] hover:shadow-md transition-all duration-300 border border-transparent hover:border-[#22a6dd]/40">
@@ -115,11 +115,11 @@ export default function ProductList() {
 
     <ul className="space-y-3">
       {[
-        { discount: "5% or more", tag: "SAVE 5%", active: true },
-        { discount: "10% or more", tag: "BEST VALUE", active: false },
-        { discount: "20% or more", tag: "MEGA SALE", active: false },
-        { discount: "30% or more", tag: "LIMITED", active: false },
-        { discount: "40% or more", tag: "SUPER SAVE", active: false },
+        { discount: "5% or more", tag: "Save 5%", active: true },
+        { discount: "10% or more", tag: "Best Value", active: false },
+        { discount: "20% or more", tag: "Mega Sale", active: false },
+        { discount: "30% or more", tag: "Limited", active: false },
+        { discount: "40% or more", tag: "Super Save", active: false },
       ].map((item) => (
         <li key={item.discount}>
           <button
@@ -238,7 +238,7 @@ export default function ProductList() {
     <select
       className="px-4 py-2 text-sm border border-gray-300 rounded-lg bg-white shadow-sm hover:border-[#22a6dd] focus:border-[#22a6dd] transition"
     >
-      <option value="default">Sort By: Default</option>
+      <option value="default">Sort by: Default</option>
       <option value="discount">Discount</option>
       <option value="lowtohigh">Price: Low → High</option>
       <option value="hightolow">Price: High → Low</option>

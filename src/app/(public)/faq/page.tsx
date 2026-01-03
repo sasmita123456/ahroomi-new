@@ -9,7 +9,7 @@ export default function FaqPage() {
   return (
     <>
       <main>
-         <InnerBanner title="FAQs" image={innerBanner} />
+         <InnerBanner title="Frequently Asked Questions" image={innerBanner} />
         <FaqDetails />
         <WhyChoose />
       </main>

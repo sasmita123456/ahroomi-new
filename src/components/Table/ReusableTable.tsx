@@ -336,7 +336,7 @@ const ReusableTable = <T extends object>({
   }, [pageIndex, pageSize, sortBy, sortOrder, search, fetchData]);
 
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 z-[40]">
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 z-40">
       {/* Table Header with Export and Search */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gray-200">
         <div className="relative mb-2 sm:mb-0" ref={exportRef}>
@@ -349,7 +349,7 @@ const ReusableTable = <T extends object>({
           </button>
 
           {showExportDropdown && (
-            <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-[50] border border-gray-200 animate-dropdown">
+            <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200 animate-dropdown">
               <button
                 onClick={() => handleExport('csv')}
                 className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

@@ -31,7 +31,7 @@ export default function CmsLayout({ children }: CmsLayoutProps) {
       <div className="flex h-screen overflow-hidden">
         <SharedSidebar isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} userRole={user?.role || "CMS"} />
 
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 bg-[#E5F4EE]">
           <SharedHeader toggleSidebar={() => setIsOpen(!isOpen)} user={user} userRole={user?.role || "CMS"} />
           <main className="p-6 overflow-y-auto">{children}</main>
         </div>
