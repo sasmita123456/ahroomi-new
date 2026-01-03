@@ -8,7 +8,7 @@ export const shopItems: ShopItem[] = [
     price: 899,
     discount: 10,
     category: "Skincare",
-    image: "/assets/shopimg/mist-1.jpeg",
+    image: "/assets/shopimg/prod1.jpg",
     featured: true
   },
   {
@@ -16,7 +16,7 @@ export const shopItems: ShopItem[] = [
     title: "Glow Moisturizer",
     price: 1299,
     category: "Skincare",
-    image: "/assets/shopimg/pocket-1.jpeg",
+    image: "/assets/shopimg/prod2.jpg",
   },
   {
     id: "3",
@@ -24,7 +24,7 @@ export const shopItems: ShopItem[] = [
     price: 1099,
     discount: 5,
     category: "Haircare",
-    image: "/assets/shopimg/essential-oil.jpg",
+    image: "/assets/shopimg/prod3.jpg",
   },
    {
     id: "4",
@@ -32,23 +32,7 @@ export const shopItems: ShopItem[] = [
     price: 1099,
     discount: 5,
     category: "Haircare",
-    image: "/assets/shopimg/essential-oil.jpg",
-  },
-    {
-    id: "5",
-    title: "Organic Hair Serum",
-    price: 1099,
-    discount: 5,
-    category: "Haircare",
-    image: "/assets/shopimg/pocket-1.jpeg",
-  },
-   {
-    id: "6",
-    title: "Organic Hair Serum",
-    price: 1099,
-    discount: 5,
-    category: "Haircare",
-    image: "/assets/shopimg/mist-1.jpeg",
+    image: "/assets/shopimg/prod4.jpg",
   }
 
   
